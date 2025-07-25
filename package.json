@@ -1,0 +1,18 @@
+{
+  "name": "voicify",
+  "packageManager": "yarn@4.9.1",
+  "scripts": {
+    "b": "tsc",
+    "bm": "clear && esbuild src/index.ts --bundle --minify --format=esm --outfile=dist/index.js",
+    "py": "clear && cd demo && python3 -m http.server 5000"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.7.8",
+    "@swc/core": "^1.13.1",
+    "esbuild": "^0.25.8",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "tesseract.js": "^6.0.1"
+  }
+}
