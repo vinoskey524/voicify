@@ -1,6 +1,7 @@
 {
   "name": "voicify",
-  "packageManager": "yarn@4.9.1",
+  "version": "1.0.0",
+  "packageManager": "yarn@4.9.2",
   "scripts": {
     "s": "clear && cd demo && python3 -m http.server 5000",
     "b": "tsup src/main.ts --format esm --dts && esbuild dist/main.js --bundle --minify --format=esm --platform=node --outfile=dist/main.mjs --keep-names --allow-overwrite"

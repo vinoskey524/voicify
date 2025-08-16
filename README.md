@@ -1,4 +1,4 @@
-# voicify
+# voicify <img src="assets/logo.png" alt="logo" width="40" height="40" style="vertical-align:middle;margin-top: -5px">
 
 A highly efficient and blazing fast Text-To-Speech (TTS) software.
 
@@ -24,6 +24,9 @@ $ npm install voicify
 
 # yarn
 $ yarn add voicify
+
+# pnpm
+$ pnpm add voicify
 
 # bun
 $ bun add voicify
