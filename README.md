@@ -1,4 +1,4 @@
-# voicify <img src="assets/logo.png" alt="logo" width="40" height="40" style="vertical-align:middle;margin-top: -5px">
+# voicify <img src="assets/logo.png" alt="logo" width="40" height="40" style="vertical-align:bottom;">
 
 A highly efficient and blazing fast Text-To-Speech (TTS) software.
 
