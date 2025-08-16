@@ -2,9 +2,9 @@
 *
 * Voicify
 *
-* A highly efficient and blazing fast Text-To-Speech software
+* A highly efficient and blazing fast Text-To-Speech (TTS) software
 *
-* @vinoskey524 • Hamet ODOUTAN (Author)
+* @vinoskey524 • Hamet Kévin E. ODOUTAN (Author)
 *
 */
 
@@ -446,8 +446,14 @@ const generateIdFunc = (): string => {
 /** Convert stringified Element into real Element */
 const convertToHTMLFunc = (component: string): Element => {
     const div = $doc.createElement('div');
-    div.innerHTML = component;
-    return div.children[0] as Element;
+    try {
+        div.innerHTML = component;
+        return div.children[0] as Element;
+
+    } catch (e: any) {
+        logFunc('log', 'convertion failed ::', e.message);
+        return div;
+    }
 };
 
 
@@ -3281,6 +3287,7 @@ const scanOnFrameAnimationFunc = (): void => {
 */
 
 /** Speaker - Used to play, pause, resume and stop text reading */
+let updatePrevWordIdx = true;
 const speaker = {
     /* Play */
     play: () => {
@@ -3341,7 +3348,7 @@ const speaker = {
                 let idx = e.charIndex;
                 let swidx = speechData.current.currentSentenceWordsIdx!;
                 let fwidx = swidx.indexOf(idx);
-                const prevWordIdx = speechData.current.currentWordIdx;
+                const prevWordIdx = updatePrevWordIdx ? speechData.current.currentWordIdx : speechData.current.prevWordIdx;
 
                 /* Try to correct the 'charIndex' when a word start by an unreadable char like an openning parenthesis '(' for example */
                 if (fwidx === -1) {
@@ -3366,8 +3373,14 @@ const speaker = {
                 const currentWordEid = wordsEid[currentWordIdx];
                 const currentWordEl = selectElementFunc(currentWordEid);
 
+                /* Unhighlight prev readed word */
+                if (prevWordEl && currentWordEl) {
+                    (prevWordEl as HTMLElement).removeAttribute('class');
+                    updatePrevWordIdx = true;
+                }
+                else updatePrevWordIdx = false;
+
                 /* Highlight current reading word */
-                if (prevWordEl) (prevWordEl as HTMLElement).removeAttribute('class');
                 if (currentWordEl) (currentWordEl as HTMLElement).setAttribute('class', 'word_selected');
 
                 /* Set next word index */
@@ -3390,6 +3403,8 @@ const speaker = {
             utt.onend = (e) => {
                 /* - */
                 speechData.current.playerState = 'paused';
+
+                updatePrevWordIdx = true;
 
                 /* - */
                 const data = speechData.current;
