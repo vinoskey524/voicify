@@ -1,0 +1,15 @@
+.yarn
+node_modules
+src
+dist/main.mjs
+demo
+
+.DS_Store
+.env
+.gitattributes
+.gitignore
+.pnp.*
+
+tsconfig.json
+swc.config.json
+yarn.lock

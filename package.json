@@ -1,0 +1,44 @@
+{
+  "name": "voicify",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A highly efficient and blazing fast Text-To-Speech (TTS) software.",
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
+  "exports": {
+    "import": {
+      "types": "./dist/main.d.ts",
+      "default": "./dist/main.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinoskey524/voicify.git"
+  },
+  "author": "Hamet Kévin E. ODOUTAN - @vinoskey524",
+  "bugs": {
+    "url": "https://github.com/vinoskey524/voicify/issues"
+  },
+  "homepage": "https://package524.vercel.app",
+  "keywords": [
+    "voicify"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "t": "clear && cd demo && python3 -m http.server 5000",
+    "b": "clear && tsup src/main.ts --format esm --dts && esbuild dist/main.js --bundle --minify --format=esm --platform=node --outfile=dist/main.mjs --keep-names --allow-overwrite",
+    "p": "clear && npm publish --access public",
+    "f": "clear && npm info voicify"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.7.8",
+    "@swc/core": "^1.13.1",
+    "esbuild": "^0.25.8",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "@types/bun": "latest"
+  },
+  "dependencies": {
+    "tesseract.js": "^6.0.1"
+  }
+}
